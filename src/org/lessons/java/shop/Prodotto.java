@@ -9,9 +9,9 @@ public class Prodotto {
 	private String nome;
 	private String descrizione;
 	private float prezzo;
-	private int iva;
+	private float iva;
 	
-	public Prodotto (String nome, String descrizione, float prezzo, int iva) {
+	public Prodotto (String nome, String descrizione, float prezzo, float iva) {
 		Random random = new Random();
 		codice = random.nextInt(11111111,99999999);
 		
@@ -50,16 +50,16 @@ public class Prodotto {
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
-	public int getIva() {
+	public float getIva() {
 		return iva;
 	}
-	public void setIva(int iva) {
+	public void setIva(float iva) {
 		this.iva = iva;
 	}
 	
 	//prezzo con iva
 	public float totalPrice() {
-		return getPrezzo() * (1 +getIva() / 100);
+		return getPrezzo() * (1 + getIva() / 100f);
 	}
 	public String fullName() {
 		String codiceStr = "" + getCodice();
