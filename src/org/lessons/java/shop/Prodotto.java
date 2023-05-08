@@ -2,6 +2,7 @@ package org.lessons.java.shop;
 
 import java.util.Random;
 
+
 public class Prodotto {
 	
 	private int codice;
@@ -10,16 +11,25 @@ public class Prodotto {
 	private float prezzo;
 	private int iva;
 	
+	public Prodotto (String nome, String descrizione, float prezzo, int iva) {
+		Random random = new Random();
+		codice = random.nextInt(11111111,99999999);
+		
+		setNome(nome);
+		setDescrizione(descrizione);
+		setPrezzo(prezzo);
+		setIva(iva);
+	}
+	
 
 	//GETTER E SETTER 
 	
 	public int getCodice() {
 		return codice;
 	}
-	private void setCodice() {
-		Random random = new Random();
-		int randomCodice = random.nextInt(100);
-		this.codice = randomCodice;
+	
+	protected void setCodice(int codice) {
+		this.codice = codice;
 	}
 	public String getNome() {
 		return nome;
@@ -49,10 +59,10 @@ public class Prodotto {
 	
 	//prezzo con iva
 	public float totalPrice() {
-		return prezzo + iva;
+		return getPrezzo() * (1 +getIva() / 100);
 	}
 	public String fullName() {
-		String codiceStr = "" + codice;
+		String codiceStr = "" + getCodice();
 		return codiceStr + nome;
 	}
 	
