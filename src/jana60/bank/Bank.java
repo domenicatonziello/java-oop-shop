@@ -22,6 +22,7 @@ public class Bank {
 			
 			int userChoise = sc.nextInt();
 			if(userChoise < 1 || userChoise > 3) {
+				System.err.println("La risposta che hai dato non è corretta");
 				continue;				
 			}
 			
@@ -33,8 +34,11 @@ public class Bank {
 			} else if (userChoise == 2) {
 				System.out.println("Digitare l'importo da prelevare");
 				int userImport = sc.nextInt();
-				conto.removeSaldo(userImport);
+				boolean message = conto.removeSaldo(userImport);
+				System.out.println(message ? "Ok" : "Non puoi prelevare");
+				
 			} else {
+				System.out.println("Arrivederci");
 				break;
 			}
 		}
