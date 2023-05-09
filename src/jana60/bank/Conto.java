@@ -6,7 +6,7 @@ public class Conto {
 	
 	private int numberCount;
 	private String name;
-	private float saldo;
+	private int saldo;
 	
 	public Conto (String name) {
 		setName(name);
@@ -31,25 +31,28 @@ public class Conto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public float getSaldo() {
+	public int getSaldo() {
 		return saldo;
 	}
-	protected void setSaldo(float saldo) {
+	protected void setSaldo(int saldo) {
 		this.saldo = saldo;
 	}
 	
 	//  aggiungere soldi
-	public float addSaldo(float somma) {
-		return getSaldo() + somma;
+	public void addSaldo(int somma) {
+		
+		if(somma < 0) return;
+		saldo += somma;
 	}
 	
-	public float removeSaldo(float somma) {
-		float price = 0;
-		if(getSaldo() != 0 && getSaldo() > somma) {
-			price = getSaldo() - somma;
-		} else {
-			System.out.println("Non è possibile effettuare prelievi");
+	public boolean removeSaldo(int somma) {
+		if(somma < 0) {
+			return false;
 		}
-		return price;
+		if(somma <= saldo) {
+			saldo -= somma;
+			return true;			
+		}
+		return false;
 	}
 }
